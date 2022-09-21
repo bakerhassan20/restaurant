@@ -10,9 +10,9 @@
 
 <div class="p-0 bg1" style="height: 100vh;width: calc(100% - 320px)">
 			<div class="p-3">
-				<p class="float-left cl font-weight-bold mb-0" style="font-size: 130%">Checkout</p>
-				<a href="../Home" style="text-decoration: none;color:black;">
-					<div id="back-button" class="btn bg-white float-right">Back</div>
+				<p class="float-left cl font-weight-bold mb-0" style="font-size: 130%">Products</p>
+				<a href="{{Route('home')}}" style="text-decoration: none;color:black;">
+					<div id="back-button" class="btn bg-white float-right">Home</div>
 				</a>
 				<div style="clear: both;"></div>
 			</div>
@@ -42,7 +42,7 @@
 
 								<td style="width: 350px">{{$product->name}}</td>
 
-								<td>{{$product->price}}</td>
+								<td>{{$product->price}}$</td>
 
 								@if($product->type == 1)
 								<td>Food</td>
@@ -76,7 +76,7 @@
 
 
 
-</div>
+
 </div>
 </div>
 </div>

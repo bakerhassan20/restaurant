@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\voucher;
+use App\Models\invoices;
+use App\Models\reservation;
+use App\Models\fee;
+use App\Models\discount;
 use Illuminate\Http\Request;
 
-class VoucherController extends Controller
+class InvoicesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +17,7 @@ class VoucherController extends Controller
      */
     public function index()
     {
-       
+        //
     }
 
     /**
@@ -22,24 +25,16 @@ class VoucherController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create(request $request)
     {
-      $request->validate([
+        $tabl_id = $request->tabl_id;
+        $total =  $request->total;
+        $invoice_number= $request->invoice_number;
+        $table_products = reservation::all()->where('table_id',$tabl_id);
+        $fees = fee::all()->sum('percent');
+        $discount = discount::all();
 
-        'code'=>'required|max:255|unique:vouchers,code',
-        'price'=>'required|max:255'
-
-      ]);
-
-      voucher::create([
-  
-        'code'=>$request->code,
-        'price'=>$request->price
-
-      ]);
-
-      return back()->with('success','voucher added successfully');
-       
+        return view('invoices.invoice',compact('table_products','fees','discount','total'));
     }
 
     /**
@@ -56,10 +51,10 @@ class VoucherController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\voucher  $voucher
+     * @param  \App\Models\invoices  $invoices
      * @return \Illuminate\Http\Response
      */
-    public function show(voucher $voucher)
+    public function show(invoices $invoices)
     {
         //
     }
@@ -67,10 +62,10 @@ class VoucherController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\voucher  $voucher
+     * @param  \App\Models\invoices  $invoices
      * @return \Illuminate\Http\Response
      */
-    public function edit(voucher $voucher)
+    public function edit(invoices $invoices)
     {
         //
     }
@@ -79,10 +74,10 @@ class VoucherController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\voucher  $voucher
+     * @param  \App\Models\invoices  $invoices
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, voucher $voucher)
+    public function update(Request $request, invoices $invoices)
     {
         //
     }
@@ -90,14 +85,11 @@ class VoucherController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\voucher  $voucher
+     * @param  \App\Models\invoices  $invoices
      * @return \Illuminate\Http\Response
      */
-
-    public function destroy(request $request)
+    public function destroy(invoices $invoices)
     {
-        $voucher = voucher::find($request->id)->first();
-        $voucher->delete();
-        return back()->with('success','voucher deleted successfuly');
+        //
     }
 }

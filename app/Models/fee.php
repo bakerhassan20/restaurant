@@ -5,12 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class tables extends Model
+class fee extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'table_number',
-        'type',
-        'status'
+
+        'name',
+        'percent',
+
     ];
+
 }

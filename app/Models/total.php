@@ -5,12 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class tables extends Model
+class total extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'table_number',
-        'type',
-        'status'
+
+        'table_id',
+        'invoice_num',
+        'total_price',
+     
+
     ];
 }

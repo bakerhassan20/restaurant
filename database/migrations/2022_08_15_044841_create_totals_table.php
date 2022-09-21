@@ -13,10 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('vouchers', function (Blueprint $table) {
+        Schema::create('totals', function (Blueprint $table) {
             $table->id();
-            $table->string('code',999);
-            $table->integer('price');
+            $table->integer('table_id');
+            $table->integer('invoice_num');
+            $table->integer('total_price');
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vouchers');
+        Schema::dropIfExists('totals');
     }
 };

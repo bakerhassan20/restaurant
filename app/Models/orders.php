@@ -5,12 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class tables extends Model
+class orders extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        'table_number',
-        'type',
-        'status'
-    ];
 }

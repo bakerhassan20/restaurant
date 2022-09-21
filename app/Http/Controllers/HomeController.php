@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\reservation;
 
 use App\Models\tables;
 
@@ -26,6 +27,9 @@ class HomeController extends Controller
     public function index()
     {
         $tables = tables::all();
+ 
+       
+
         return view('home',compact('tables'));
     }
 }

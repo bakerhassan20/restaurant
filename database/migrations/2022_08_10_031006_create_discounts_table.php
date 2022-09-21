@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('vouchers', function (Blueprint $table) {
-            $table->id();
-            $table->string('code',999);
-            $table->integer('price');
+        Schema::create('discounts', function (Blueprint $table) {
+            $table->id(); 
+            $table->string('name',999);
+            $table->integer('percent');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vouchers');
+        Schema::dropIfExists('discounts');
     }
 };

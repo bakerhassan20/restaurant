@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\voucher;
+use App\Models\discount;
 use Illuminate\Http\Request;
 
-class VoucherController extends Controller
+class DiscountController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class VoucherController extends Controller
      */
     public function index()
     {
-       
+    
     }
 
     /**
@@ -22,24 +22,9 @@ class VoucherController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create()
     {
-      $request->validate([
-
-        'code'=>'required|max:255|unique:vouchers,code',
-        'price'=>'required|max:255'
-
-      ]);
-
-      voucher::create([
-  
-        'code'=>$request->code,
-        'price'=>$request->price
-
-      ]);
-
-      return back()->with('success','voucher added successfully');
-       
+        //
     }
 
     /**
@@ -50,16 +35,32 @@ class VoucherController extends Controller
      */
     public function store(Request $request)
     {
-        //
+          $id = $request->id;
+          $request->validate([
+          'name'=>'required|max:255|unique:discounts,name,'.$id,
+          'percent'=>'required|max:255'
+  
+        ]);
+  
+        $discount = discount::find($id);
+        $discount->update([
+  
+          'name'    => $request->name,
+          'percent' => $request->percent,
+  
+        ]);
+  
+         return back()->with('success','discount edited successfully');
+  
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\voucher  $voucher
+     * @param  \App\Models\discount  $discount
      * @return \Illuminate\Http\Response
      */
-    public function show(voucher $voucher)
+    public function show(discount $discount)
     {
         //
     }
@@ -67,22 +68,22 @@ class VoucherController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\voucher  $voucher
+     * @param  \App\Models\discount  $discount
      * @return \Illuminate\Http\Response
      */
-    public function edit(voucher $voucher)
+    public function edit(request $request)
     {
-        //
+       
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\voucher  $voucher
+     * @param  \App\Models\discount  $discount
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, voucher $voucher)
+    public function update(Request $request, discount $discount)
     {
         //
     }
@@ -90,14 +91,11 @@ class VoucherController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\voucher  $voucher
+     * @param  \App\Models\discount  $discount
      * @return \Illuminate\Http\Response
      */
-
-    public function destroy(request $request)
+    public function destroy(discount $discount)
     {
-        $voucher = voucher::find($request->id)->first();
-        $voucher->delete();
-        return back()->with('success','voucher deleted successfuly');
+        //
     }
 }

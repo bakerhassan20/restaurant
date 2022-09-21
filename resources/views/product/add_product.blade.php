@@ -19,8 +19,8 @@
 						</button>
 					</div>
 				@endif	
-				<a href="../Home" style="text-decoration: none;color:black;">
-					<div id="back-button" class="btn bg-white float-right">Back</div>
+				<a href="{{Route('home')}}" style="text-decoration: none;color:black;">
+					<div id="back-button" class="btn bg-white float-right">Home</div>
 				</a>
 				<div style="clear: both;"></div>
 			</div>

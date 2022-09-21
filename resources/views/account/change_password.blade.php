@@ -11,9 +11,9 @@
 
 <div class="p-0 bg1" style="height: 100vh;width: calc(100% - 320px)">
 			<div class="p-3">
-				<p class="float-left cl font-weight-bold mb-0" style="font-size: 130%">Checkout</p>
+				<p class="float-left cl font-weight-bold mb-0" style="font-size: 130%">Account</p>
 				<a href="../Home" style="text-decoration: none;color:black;">
-					<div id="back-button" class="btn bg-white float-right">Back</div>
+					<div id="back-button" class="btn bg-white float-right">Home</div>
 				</a>
 				<div style="clear: both;"></div>
 			</div>

@@ -5,12 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class tables extends Model
+class theme extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'table_number',
-        'type',
-        'status'
+
+        'color1',
+        'color2',
+        'color3',
+        'color4',
+
     ];
 }
