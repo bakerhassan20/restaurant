@@ -18,7 +18,7 @@
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
-				@endif	
+				@endif
 				@if ($errors->any())
 				<div class="alert alert-danger"style="  width: 314px;
 														position: absolute;
@@ -63,7 +63,7 @@
 												</div><div class="col-6 p-0 mt-2">
 												<label>Text</label><br>
 												<input id="color4" type="color" value="{{$theme->color4}}" name="color4">	<br>
-												</div>		
+												</div>
 										</div>
 										<div>
 <button type="submit" class="form-control mt-3 float-left" style="width: 70%"
@@ -71,7 +71,7 @@ onclick="ChangColor(`#ffffff`,`{{$theme->color2}}`,`{{$theme->color3}}`,`{{$them
 
 											<div class="btn float-right bg-white mt-3 text-dark" onclick="SetDefaultColor()">Set Default</div>
 											<div style="clear: both;"></div>
-										</div>									
+										</div>
 									</form>
 								</div>
 							</div>
@@ -98,7 +98,7 @@ onclick="ChangColor(`#ffffff`,`{{$theme->color2}}`,`{{$theme->color3}}`,`{{$them
 		<div class="btn bg-white text-dark" onclick="ChangeFee({{$fe->id }},`{{$fe->name }}`,{{$fe->percent }})">Edit</div>
 													</td>
                                                 </tr>
-													@endforeach	
+													@endforeach
 										      </tbody>
 										</table>
 									</div>
@@ -117,7 +117,7 @@ onclick="ChangColor(`#ffffff`,`{{$theme->color2}}`,`{{$theme->color3}}`,`{{$them
 											<div  class="px-2" style="width: 30%">
 												<button type="submit" class="btn" style="margin-top: 32px">Edit fee</button>
 											</div>
-										</div>									
+										</div>
 									</form>
 								</div>
 							</div>
@@ -160,8 +160,9 @@ onclick="ChangColor(`#ffffff`,`{{$theme->color2}}`,`{{$theme->color3}}`,`{{$them
 													</tbody>
 										</table>
 									</div>
-									<form id="form-edit-table" action="{{url('/' . $page='EditTable')}}" method="post" style="display: none;">
+									<form id="form-edit-table" action="{{route('table.update','test')}}" method="post" style="display: none;">
 									{{ csrf_field() }}
+                                    {{ method_field('put') }}
 										<div style="display: flex;">
 											<input id="idTable"  type="" name="idTable" style="display: none;">
 											<div class="px-2" style="width: 30%">
@@ -172,19 +173,19 @@ onclick="ChangColor(`#ffffff`,`{{$theme->color2}}`,`{{$theme->color3}}`,`{{$them
 												<label>Type</label><br>
 												<select id="typeTable" class="form-control" name="typeTable">
 													<option value="1">Normal</option>
-												
+
 													<option value="2">Vip</option>
 												</select>
 											</div>
 											<div  class="px-2" style="width: 30%">
 												<button type="submit" class="btn" style="margin-top: 32px">Edit Table</button>
 											</div>
-										</div>									
+										</div>
 									</form>
 									<form id="form-add-table" action="{{url('/' . $page='createTable')}}" method="post">
 									{{ csrf_field() }}
 										<div style="display: flex;">
-											
+
 											<div class="px-2" style="width: 30%">
 												<label>Number</label><br>
 												<input type="" class="form-control" name="numberTable">
@@ -199,7 +200,7 @@ onclick="ChangColor(`#ffffff`,`{{$theme->color2}}`,`{{$theme->color3}}`,`{{$them
 											<div  class="px-2" style="width: 30%">
 												<button type="submit" class="btn" style="margin-top: 32px">Add Table</button>
 											</div>
-										</div>									
+										</div>
 									</form>
 								</div>
 							</div>
@@ -225,8 +226,8 @@ onclick="ChangColor(`#ffffff`,`{{$theme->color2}}`,`{{$theme->color3}}`,`{{$them
 												<td>{{$voucher->code}}</td>
 												<td>{{$voucher->price}}</td>
 												<td>
-											
-                     
+
+
 												<form action="{{ route('Voucher.destroy', 'test') }}" method="post"
 												style="text-decoration: none;color:black;">
 												{{ method_field('delete') }}
@@ -243,7 +244,7 @@ onclick="ChangColor(`#ffffff`,`{{$theme->color2}}`,`{{$theme->color3}}`,`{{$them
 								</div>
 								<form action="{{url('/' . $page='createVoucher')}}" method="POST">
 								{{ csrf_field() }}
-								
+
 									<div style="display: flex;">
 										<div class="px-2" style="width: 30%">
 											<label>Code</label><br>
@@ -256,7 +257,7 @@ onclick="ChangColor(`#ffffff`,`{{$theme->color2}}`,`{{$theme->color3}}`,`{{$them
 										<div  class="px-2" style="width: 30%">
 											<button type="submit" class="btn" style="margin-top: 32px">Add Voucher</button>
 										</div>
-									</div>									
+									</div>
 								</form>
 							</div>
 						</div>
@@ -282,8 +283,8 @@ onclick="ChangColor(`#ffffff`,`{{$theme->color2}}`,`{{$theme->color3}}`,`{{$them
 												<td>
 												<div class="btn bg-white text-dark" onclick="ChangeDiscount({{$dis->id}},`{{$dis->name}}`,{{$dis->percent}})">Edit</div>
 
-												</td>	
-												@endforeach	
+												</td>
+												@endforeach
 												</tbody>
 									</table>
 								</div>
@@ -302,12 +303,12 @@ onclick="ChangColor(`#ffffff`,`{{$theme->color2}}`,`{{$theme->color3}}`,`{{$them
 										<div  class="px-2" style="width: 30%">
 											<button type="submit" class="btn" style="margin-top: 32px">Edit Discount</button>
 										</div>
-									</div>									
+									</div>
 								</form>
 							</div>
 						</div>
 					</div>
-				
+
 
 
 				</div>
@@ -324,7 +325,7 @@ onclick="ChangColor(`#ffffff`,`{{$theme->color2}}`,`{{$theme->color3}}`,`{{$them
 @endsection
 
 <script type="text/javascript">
-	
+
 	function SetDefaultColor(){
 		$("#color1").val('#121421');
 		$("#color2").val('#1e202c');
@@ -346,13 +347,13 @@ onclick="ChangColor(`#ffffff`,`{{$theme->color2}}`,`{{$theme->color3}}`,`{{$them
 		$("#priceDiscount").val(price);
 	}
 
-	
+
 		function EditTable(id,number,type){
-		
+
 		$("#form-edit-table").show();
 	    $("#numberTable").val(number);
 	    $("#typeTable").val(type);
-	    $("#idTable").val(id);		
+	    $("#idTable").val(id);
 			}
 
 </script>

@@ -43,31 +43,38 @@
 				<div style="height: calc(100vh - 120px);overflow-y: auto;">
 
 				<div class="py-2 px-4 text-white bg2" style="width: 500px;margin: auto">
-					<form action="{{ route('Product.store') }}" method="post" enctype='multipart/form-data'>
+					<form action="{{ route('Product.update','edit') }}" method="post" enctype='multipart/form-data'>
 					    {{ csrf_field() }}
+                        @method('put')
 
-						<p class="text-center" style="font-size: 130%">Add Product</p>
-
+						<p class="text-center" style="font-size: 130%">Edit Product</p>
+                        <input type="hidden" name="id" required value="{{$product->id}}">
 						<label>Name</label>
-						<input type="text" class="form-control"  style="background: none;color: white" name="name" required>
+						<input type="text" class="form-control"  style="background: none;color: white" name="name" required value="{{$product->name}}">
 
 						<label class="mt-2">Price</label>
-						<input type="number" class="form-control"  style="background: none;color: white" name="price"required >
+						<input type="number" class="form-control"  style="background: none;color: white" name="price"required value="{{$product->price}}">
 
 						<label class="mt-2">Type</label>
 						<select class="form-control" id="exampleFormControlSelect1" style="background: none;" name="type"required>
+
 							<option value="1">Food</option>
-							<option value="2">Drink</option>
+							<option value="2"
+                              @if($product->type == 2)
+                              selected
+                              @endif
+                            >Drink</option>
 						</select>
 
 						<label class="mt-2">Quantity</label>
-						<input type="number" class="form-control"  style="background: none;color: white" name="quantity"required >
+						<input type="number" class="form-control"  style="background: none;color: white" name="quantity"required value="{{$product->quantity}}">
 
 						<label class="mt-2">Image</label><br>
-						<input type="file" name="upload"required accept=".pdf,.jpg, .png, image/jpeg, image/png"
+						<input type="file" name="upload" accept=".pdf,.jpg, .png, image/jpeg, image/png"
                                 data-height="70">
+
 						<div class="text-center mt-3 mb-3">
-							<button type="submit" class="btn bg-white">Add Product</button>
+							<button type="submit" class="btn bg-white">Edit Product</button>
 						</div>
 						<p class="text-center">
 													</p>

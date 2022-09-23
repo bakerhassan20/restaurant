@@ -12,7 +12,7 @@
 <div class="p-0 bg1" style="height: 100vh;width: calc(100% - 320px)">
 			<div class="p-3">
 				<p class="float-left cl font-weight-bold mb-0" style="font-size: 130%">Account</p>
-				<a href="../Home" style="text-decoration: none;color:black;">
+				<a href="{{Route('home')}}" style="text-decoration: none;color:black;">
 					<div id="back-button" class="btn bg-white float-right">Home</div>
 				</a>
 				<div style="clear: both;"></div>
@@ -32,7 +32,7 @@
 						<input id="passwordRe" type="text"name='passwordRe' class="form-control"  style="background: none;color: white">
 						<div class="text-center mt-3 mb-3">
 				        	<button type="submit" id="submit-button" class="btn bg-white text-dark">Change Password</button>
-						</div>	
+						</div>
 						@if ($errors->any())
 								<div class="alert" id="text-status" class="text-center"
 								style='width:380px;color: #ff0018'>
@@ -43,11 +43,11 @@
 									</ul>
 								</div>
 							@endif
-							
+
 							@if (session()->has('error'))
 							<div class="alert" id="text-status" class="text-center"
 								style='width:380px;color: #ff0018'>
-								
+
 									<ul>
 											<li>{{ session()->get('error') }}</li>
 									</ul>
@@ -56,7 +56,7 @@
 							@if (session()->has('success'))
 							<div class="alert" id="text-status" class="text-center"
 								style='width:380px;color: #00ff14'>
-								
+
 									<ul>
 											<li>{{ session()->get('success') }}</li>
 									</ul>
@@ -67,7 +67,7 @@
 
 
 
-	
+
 
 			</div>
 		</div>

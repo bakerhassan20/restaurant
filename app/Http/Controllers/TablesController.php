@@ -14,7 +14,7 @@ class TablesController extends Controller
      */
     public function index()
     {
-   
+
     }
 
     /**
@@ -50,7 +50,7 @@ class TablesController extends Controller
      */
     public function store(Request $request)
     {
-        
+
     }
 
     /**
@@ -76,17 +76,17 @@ class TablesController extends Controller
         $request->validate([
           'numberTable'=>'required|max:255|unique:tables,table_number,'.$id,
           'typeTable'=>'required|max:255'
-  
+
         ]);
-  
+
         $tables = tables::find($id);
         $tables->update([
-  
+
           'table_number'    => $request->numberTable,
           'type' => $request->typeTable,
-  
+
         ]);
-  
+
          return back()->with('success','table edited successfully');
     }
 
@@ -97,9 +97,24 @@ class TablesController extends Controller
      * @param  \App\Models\tables  $tables
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, tables $tables)
+    public function update(Request $request)
     {
-        //
+        $id = $request->idTable;
+        $request->validate([
+          'numberTable'=>'required|max:255|unique:tables,table_number,'.$id,
+          'typeTable'=>'required|max:255'
+
+        ]);
+
+        $tables = tables::find($id);
+        $tables->update([
+
+          'table_number'    => $request->numberTable,
+          'type' => $request->typeTable,
+
+        ]);
+
+         return back()->with('success','table edited successfully');
     }
 
     /**

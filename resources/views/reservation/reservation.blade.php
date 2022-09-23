@@ -49,7 +49,7 @@
 		}</style>
 <div class="container-fluid p-0">
 	<div class="row m-0">
-		<div class="p-2 bg2" style="height:110hv;width: 320px;">
+		<div class="p-2 bg2" style="height:100hv;width: 320px;">
 			<p class="ml-1 font-weight-bold cl" style="font-size: 130%">Orders</p>
 			<div id="cart-box" style="">
 				<div id="cart-item" style="height: calc(100vh - 250px);width: 100%;">
@@ -146,9 +146,8 @@
             <input type="hidden" name="voucher" value="" id="voucher_input">
             <input type="hidden" name="discount" value="" id="discount_input">
             <input type="hidden" name="fee" value="" id="fee_input">
-			<p  class="cl float-left mb-1" style="font-size:18px">Invoice number</p>
-			<input type="number" name="invoice_number" value=""class=" float-right mb-1"style="width:160px"required>
-		<button type="submit" class="btn text-dark" style="margin:20px;width: 220px;border-radius: 3;background-color: coral;">Checkout</button>
+
+		<button type="submit" class="btn text-dark" style="margin:15px 15px 15px 30px;width: 220px;border-radius: 3;background-color: coral;">Checkout</button>
 
 	 </form>
 			</div>
@@ -156,27 +155,24 @@
 		    </div>
 
 
-		<div class="p-0 bg1" style="height: 110vh;width: calc(100% - 320px)">
+		<div class="p-0 bg1" style="height: 100vh;width: calc(100% - 320px)">
 			<div class="p-3">
 
 
-			<a href="{{Route('home')}}" style="text-decoration: none;color:black;">
+			    <a href="{{Route('home')}}" style="text-decoration: none;color:black;">
 					<div id="back-button" class="btn bg-white float-right">Home</div>
 				</a>
 
-				<div id="box-search-product" class="bg2 float-left" style="width: 350px;height: 50px;display: flex;">
-					<input id="search-input" class="p-2" type="" name="" style="width: calc(100% - 50px);height: 100%;background: none;border: 0;outline: none;color: white">
-					<div class="text-center" style="width: 50px;height: 50px;">
-						<i class="fa fa-search cl" aria-hidden="true" style="font-size: 130%;line-height: 48px;opacity: 0.8"></i>
-					</div>
-				</div>
 
-				<div id="food-filter" class="bg2 ml-2 float-left text-center" style="width: 100px; height: 50px;">
+				<div id="food-filter" class="bg2 ml-5 float-left text-center" style="margin-right:10px;width: 100px; height: 50px;">
+                <a href="{{ URL('reservation/food/'.$table_id)}}"style="text-decoration:none;">
 					<p class="cl" style="line-height: 49px">Food</p>
+                </a>
 				</div>
 				<div id="drink-filter" class="bg2 ml-2 float-left text-center" style="width: 100px; height: 50px;">
+                <a href="{{ URL('reservation/drink/'.$table_id)}}"style="text-decoration:none;">
 					<p class="cl" style="line-height: 49px">Drink</p>
-
+                </a>
 				</div>
 				<div style="clear: both;"></div>
 			</div>

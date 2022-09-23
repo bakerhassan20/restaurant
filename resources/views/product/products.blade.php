@@ -16,10 +16,10 @@
 				</a>
 				<div style="clear: both;"></div>
 			</div>
-			
+
 				<div class="text-center"><div class="btn mb-2 bg-white">
 					<a href="Product/create" style="color: black;text-decoration: none;">Add Product</a></div></div>
-		
+
 
 			<div style="height: calc(100vh - 120px);overflow-y: auto;">
 
@@ -27,7 +27,6 @@
 					<table class="table bg2 cl">
 						<thead>
 							<tr>
-
 								<th scope="col">Image</th>
 								<th scope="col">Name</th>
 								<th scope="col">Price</th>
@@ -50,18 +49,19 @@
 								<td>Drink</td>
 								@endif
 
-
 								<td>
-								<a href="../Product/GetEditProduct/2" style="text-decoration: none;color:black;">
+								<a href="{{ route('edit_product',$product->id) }}" style="text-decoration: none;color:black;">
 									<div class="btn bg-white text-dark float-left mr-2">Edit</div>
 								</a>
 
-								<a href="../Product/DeleteProduct/2"style="text-decoration: none;color:black;">
+								<a href="{{ route('delete_product',$product->id) }}">
 									<div class="btn bg-white text-dark">Delete</div>
+
 								</a>
+
 								</td>
                             </tr>
-						@endforeach						
+						@endforeach
 						</tbody>
 
 

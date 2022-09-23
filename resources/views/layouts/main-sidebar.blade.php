@@ -88,7 +88,19 @@ input[type=number] {
 <div class="container-fluid p-0">
 		<div class="row m-0">
 			<div class="p-2 bg2" style="height: 100vh;width: 320px;">
+            <div class="container-fluid p-0">
+            <div class="row">
+            <div class="col-6">
+              <img src="/Attachments/images/favicon1.png" width="80%" height="80%">
+
+            </div>
+              <div class="col-6">
 			<p class="ml-1 font-weight-bold text-white" style="font-size: 130%">MANAGE</p>
+
+            </div>
+            </div>
+            </div>
+
 
 
 
@@ -104,8 +116,17 @@ input[type=number] {
 								<p class="text-white mb-0" style="font-size: 80%;opacity: 0.7">Administrator</p>
 							</div>
 							<div class="bg2 float-right text-center" style="width: 40px;height: 100%;">
-								<i class="fa fa-power-off text-white" aria-hidden="true" style="font-size: 130%;line-height: 39px"></i>
+                               <a  class="" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                                <i class="fa fa-power-off text-white" aria-hidden="true" style="font-size: 130%;line-height: 39px"></i>
+                                </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+
 							</div>
+
+
+
 						</div>
 					</div>
 					<div class="col-6 p-1" style="height: 80px;">

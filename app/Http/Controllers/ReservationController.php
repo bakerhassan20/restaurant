@@ -22,7 +22,7 @@ class ReservationController extends Controller
      */
     public function index()
     {
-      
+
     }
 
     /**
@@ -34,8 +34,8 @@ class ReservationController extends Controller
     {
         $tabl_id = $request->table_id;
         $pro_id  =$request->product_id;
- 
-    
+
+
             //check if table exist in reservation model
             if (reservation::where('product_id',$pro_id)->where('table_id',$tabl_id)->count() > 0 ) {
                 $res = reservation::where('table_id',$tabl_id)->where('product_id',$pro_id);
@@ -43,8 +43,8 @@ class ReservationController extends Controller
                     'quanlity' =>  DB::raw('quanlity + 1'),
                 ]);
 
-                
-             
+
+
 
             }else{
                 reservation::create([
@@ -52,20 +52,20 @@ class ReservationController extends Controller
                     'table_id'=> $tabl_id,
                     'product_id'=>$pro_id,
                     'quanlity' =>1,
-                  
+
 
                 ]);
                 $tabl = tables::find($tabl_id);
                 $tabl->update([
                     'status'=> 2,
                 ]);
-                
+
 
             }
-           
+
 
                return back();
-         
+
     }
 
     /**
@@ -76,7 +76,7 @@ class ReservationController extends Controller
      */
     public function store(Request $request)
     {
-       
+
     }
 
 
@@ -87,7 +87,7 @@ class ReservationController extends Controller
            $data = voucher::where('code',$code)->get('price');
            $return_array = compact('data');
            return json_encode($return_array);
-         
+
        }
     }
     /**
@@ -102,6 +102,30 @@ class ReservationController extends Controller
       $table_id = $id;
       $reservation = reservation::where('table_id',$id)->get();
       $products = products::all();
+      $discount = discount::all();
+      $fee = fee::all();
+      $voucher = voucher::all();
+      return view('reservation.reservation',compact('products','table_id','reservation','discount','fee','voucher'));
+    }
+
+    public function food($id)
+    {
+
+      $table_id = $id;
+      $reservation = reservation::where('table_id',$id)->get();
+      $products = products::where('type',1)->get();
+      $discount = discount::all();
+      $fee = fee::all();
+      $voucher = voucher::all();
+      return view('reservation.reservation',compact('products','table_id','reservation','discount','fee','voucher'));
+    }
+
+    public function drink($id)
+    {
+
+      $table_id = $id;
+      $reservation = reservation::where('table_id',$id)->get();
+      $products = products::where('type',2)->get();
       $discount = discount::all();
       $fee = fee::all();
       $voucher = voucher::all();
@@ -140,7 +164,7 @@ class ReservationController extends Controller
         $res->update([
             'quanlity' =>  DB::raw('quanlity + 1'),
                 ]);
-  
+
                 return back();
     }
 
@@ -167,7 +191,7 @@ class ReservationController extends Controller
                 'status'=> 1,
             ]);
 
-           
+
         }
         return back();
     }
