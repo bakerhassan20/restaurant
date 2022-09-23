@@ -1,4 +1,4 @@
-		
+
 
 <!DOCTYPE html>
 <html>
@@ -13,14 +13,14 @@
     src="https://code.jquery.com/jquery-3.5.1.js"
     integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
     crossorigin="anonymous"></script>
-	
+
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 
-	
+
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
 	<script
   src="https://code.jquery.com/jquery-3.4.1.min.js"
@@ -30,7 +30,7 @@
     <title></title>
 </head>
 <style type="text/css">
-	
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -80,7 +80,7 @@ input[type=number] {
 		}
 		.cl{
 			color: #ffffff;
-		}</style> 
+		}</style>
 
 
 
@@ -109,16 +109,18 @@ input[type=number] {
 						</div>
 					</div>
 					<div class="col-6 p-1" style="height: 80px;">
+                    <a href="{{url('/' . $page='analytics')}}"style="text-decoration:none;">
 						<div class="bg1 p-2" style="width: 100%;height: 100%;">
 							<p class="text-white mb-0" style="opacity: 0.7">Analytics</p>
 							<i class="fa fa-bar-chart text-white float-right" aria-hidden="true" style="font-size: 190%;opacity: 0.5"></i>
 						</div>
+                    </a>
 					</div>
-				
+
 					<div class="col-6 p-1" style="height: 80px;">
 					<a href="{{url('/' . $page='Product')}}"style="text-decoration:none;">
 						<div class="bg1 p-2" style="width: 100%;height: 100%;">
-						
+
 							<p class="text-white mb-0" style="opacity: 0.7">
 							Product</p>
 							<i class="fa fa fa-cutlery text-white float-right" aria-hidden="true" style="font-size: 190%;opacity: 0.5"></i>
@@ -131,7 +133,7 @@ input[type=number] {
 						</div>
 					</div>
 
-					
+
 					<div class="col-6 p-1" style="height: 80px;">
 					<a href="{{url('/' . $page='system')}}"style="text-decoration:none;">
 						<div class="bg1 p-2" style="width: 100%;height: 100%;">
@@ -140,8 +142,8 @@ input[type=number] {
 						</div>
 						</a>
 					</div>
-				
-					
+
+
 					<div class="col-6 p-1" style="height: 80px;">
 					<a href="{{url('/' . $page='change_password')}}"style="text-decoration:none;">
 						<div class="bg1 p-2" style="width: 100%;height: 100%;">
@@ -152,15 +154,15 @@ input[type=number] {
 					</div>
 				</div>
 			</div>
-			
 
 
 
-	         
 
 
 
-				
+
+
+
 
 
 

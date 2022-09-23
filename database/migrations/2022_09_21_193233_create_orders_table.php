@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreateOrdersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,6 +15,11 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+            $table->integer('table_id');
+            $table->integer('fee')->nullable();
+            $table->integer('discount')->nullable();
+            $table->integer('voucher')->nullable();
+            $table->integer('total');
             $table->timestamps();
         });
     }
@@ -28,4 +33,4 @@ return new class extends Migration
     {
         Schema::dropIfExists('orders');
     }
-};
+}

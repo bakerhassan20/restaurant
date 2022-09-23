@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Arvo&display=swap" rel="stylesheet">
- 
+
 
 
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
@@ -19,7 +19,7 @@
     <title></title>
 </head>
 <style type="text/css">
- 
+
     .dot-pending{
         color: #f8ca30;
     }
@@ -46,7 +46,7 @@
 		}
 		.cl{
 			color: #ffffff;
-		}</style> 
+		}</style>
 <div class="container-fluid p-0">
 	<div class="row m-0">
 		<div class="p-2 bg2" style="height:110hv;width: 320px;">
@@ -106,7 +106,7 @@
 				@endforeach
 		        </div>
 				<div style="width: 100%;height: 160px">
-							
+
 				<p id="voucher-text" class="cl float-left mb-1">Voucher</p>
 				<input id="input-code" type="" name="" class="float-left" style="border:0;outline:none;display: none;">
 				<div id="voucher-box" onclick="EnterCode()" class="float-right bg3 text-center cl" style="width: 20px;height: 20px;font-size: 85%">
@@ -114,7 +114,7 @@
 					<i id="submit-button" class="fa fa-check" aria-hidden="true" style="display: none;"></i>
 				</div>
 				<div id="voucher-ok" class="float-right text-center cl" style="display: none;">
-                   
+
 
 
 					<p id="text-number" class="mb-0 float-left"></p>
@@ -127,26 +127,29 @@
 				<p id="discount-text" class="cl float-right mb-1">{{$dis->percent}}</p>
 				@endforeach
 					<div style="clear: both;"></div>
-				@foreach($fee as $fe)	
+				@foreach($fee as $fe)
 				<p class="cl float-left mb-1">{{$fe->name}}</p>
 					<p class="cl float-right mb-1">%</p>
-					<p id="VAT-text" class="cl float-right mb-1">{{$fe->percent}}</p>
+					<p id="Fee-text" class="cl float-right mb-1">{{$fe->percent}}</p>
 					<div style="clear: both;"></div>
 				@endforeach
-						
+
 				<p class="cl float-left mb-1" style="font-size: 130%">Total</p>
-           
+
                <p id="total-text" class="cl float-right mb-1" style="font-size: 130%"></p>
-           
+
 				<div style="clear: both;"></div>
 	<form action="{{url('/' . $page='invoice')}}"method="post">
 	    {{ csrf_field() }}
 			<input type="hidden" name="tabl_id" value="{{$table_id}}">
 			<input type="hidden" name="total" value="" id="total_input">
+            <input type="hidden" name="voucher" value="" id="voucher_input">
+            <input type="hidden" name="discount" value="" id="discount_input">
+            <input type="hidden" name="fee" value="" id="fee_input">
 			<p  class="cl float-left mb-1" style="font-size:18px">Invoice number</p>
 			<input type="number" name="invoice_number" value=""class=" float-right mb-1"style="width:160px"required>
 		<button type="submit" class="btn text-dark" style="margin:20px;width: 220px;border-radius: 3;background-color: coral;">Checkout</button>
-			
+
 	 </form>
 			</div>
 			</div>
@@ -155,35 +158,36 @@
 
 		<div class="p-0 bg1" style="height: 110vh;width: calc(100% - 320px)">
 			<div class="p-3">
-			
-				
+
+
 			<a href="{{Route('home')}}" style="text-decoration: none;color:black;">
 					<div id="back-button" class="btn bg-white float-right">Home</div>
 				</a>
-				
+
 				<div id="box-search-product" class="bg2 float-left" style="width: 350px;height: 50px;display: flex;">
 					<input id="search-input" class="p-2" type="" name="" style="width: calc(100% - 50px);height: 100%;background: none;border: 0;outline: none;color: white">
 					<div class="text-center" style="width: 50px;height: 50px;">
 						<i class="fa fa-search cl" aria-hidden="true" style="font-size: 130%;line-height: 48px;opacity: 0.8"></i>
 					</div>
 				</div>
-				
+
 				<div id="food-filter" class="bg2 ml-2 float-left text-center" style="width: 100px; height: 50px;">
 					<p class="cl" style="line-height: 49px">Food</p>
 				</div>
 				<div id="drink-filter" class="bg2 ml-2 float-left text-center" style="width: 100px; height: 50px;">
 					<p class="cl" style="line-height: 49px">Drink</p>
+
 				</div>
 				<div style="clear: both;"></div>
 			</div>
-		
-		
+
+
 		     @foreach($products as $product)
 
 			 <form action="{{url('/' . $page='creatreservation')}}" method="post">
 			    {{ csrf_field() }}
 				<div class="p-1 float-left">
-				
+
 					<input type="hidden"name="product_id"value="{{$product -> id}}">
 					<input type="hidden"name="table_id"value="{{$table_id}}">
 				<button class="bg-dark"style="padding: 0;outline-style: none;" type="submit">
@@ -204,20 +208,30 @@
 		</div>
 	</div>
 </div>
-<?php 
+<?php
 
 ?>
 <script>
 
 	var element =document.querySelectorAll("#quanlity");
-	var names = 0;
+	var total = 0;
 	for(var i=0; i<element.length;i++){
-		names = names + parseInt(element[i].value);
+		total = total + parseInt(element[i].value);
 	}
-		console.log(names);
 
-		document.getElementById("total-text").innerHTML =names;
-		document.getElementById("total_input").value =names;
+
+       var discount = document.getElementById("discount-text").textContent;
+       document.getElementById("discount_input").value = parseInt(discount);
+       var after_discount = total*(100 - parseInt(discount))/100;
+
+       var fee = document.getElementById("Fee-text").textContent;
+       document.getElementById("fee_input").value = parseInt(fee);
+       var afrter_fee = total*parseInt(fee)/100;
+
+       total = after_discount + afrter_fee;
+
+		document.getElementById("total-text").innerHTML =total;
+		document.getElementById("total_input").value =total;
 
 
 	function EnterCode(){
@@ -237,11 +251,11 @@ $(document).ready(function(){
 			       'code' : inputCode,
 	        	},
 				dataType : 'json',
-		    success: function(data){	
-		     
-			 console.log(data.data[0])
-		        $("#voucher-text").show();	
-				$("#voucher-text").text(inputCode);		
+		    success: function(data){
+
+			// console.log(data.data[0])
+		        $("#voucher-text").show();
+				$("#voucher-text").text(inputCode);
 				$("#submit-button").hide();
 				$("#add-button").show();
 				$("#input-code").hide();
@@ -249,8 +263,12 @@ $(document).ready(function(){
 				$("#add-button").hide();
 				$("#voucher-box").hide();
 				$("#voucher-ok").show();
-				$("#text-number").text(data.data[0]);
-			
+				$("#text-number").text(data.data[0]['price']);
+
+          document.getElementById("total-text").innerHTML -= data.data[0]['price'] ;
+		  document.getElementById("total_input").value -= data.data[0]['price'];
+          document.getElementById("voucher_input").value = data.data[0]['price'];
+           console.log(document.getElementById("voucher_input").value)
 			}
 		});
 	})

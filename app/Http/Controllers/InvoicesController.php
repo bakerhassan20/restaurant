@@ -6,6 +6,8 @@ use App\Models\invoices;
 use App\Models\reservation;
 use App\Models\fee;
 use App\Models\discount;
+use App\Models\orders;
+use App\Models\tables;
 use Illuminate\Http\Request;
 
 class InvoicesController extends Controller
@@ -29,12 +31,15 @@ class InvoicesController extends Controller
     {
         $tabl_id = $request->tabl_id;
         $total =  $request->total;
+        $voucher =  $request->voucher;
         $invoice_number= $request->invoice_number;
+        $discount = $request->discount;
+        $fee = $request->fee;
         $table_products = reservation::all()->where('table_id',$tabl_id);
-        $fees = fee::all()->sum('percent');
-        $discount = discount::all();
+        //$fees = fee::all()->sum('percent');
+        //$discount = discount::all();
 
-        return view('invoices.invoice',compact('table_products','fees','discount','total'));
+       return view('invoices.invoice',compact('tabl_id','table_products','fee','discount','total','voucher'));
     }
 
     /**
@@ -88,8 +93,35 @@ class InvoicesController extends Controller
      * @param  \App\Models\invoices  $invoices
      * @return \Illuminate\Http\Response
      */
-    public function destroy(invoices $invoices)
+    public function destroy(Request $request)
     {
-        //
+
+        $order= orders::create([
+            'table_id' => $request->tabl_id,
+            'fee'      =>  $request->fee,
+            'discount' => $request->discount,
+            'voucher'  => $request->voucher,
+            'total'    => $request->total,
+
+        ]);
+
+        $order->id;
+        $table_products = reservation::all()->where('table_id', $request->tabl_id);
+
+        foreach($table_products as $table_product){
+          //echo $table_product->product_id;
+          $order->product()->syncWithoutDetaching([$table_product->product_id => ['quantity' => $table_product->quanlity]]);
+         }
+
+         foreach($table_products as $table_product){
+            $table_product->delete();
+           }
+
+           $tabl = tables::find($request->tabl_id);
+           $tabl->update([
+               'status'=> 1,
+           ]);
+
+         return redirect()->route('home');
     }
 }

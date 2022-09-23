@@ -42,20 +42,16 @@
 					<thead>
 					<tr>
 							<th scope="col">Fee</th>
-							@foreach($discount as $dis)
-							<th scope="col">{{$dis -> name}}</th>
-							@endforeach
+							<th scope="col">Discount</th>
 							<th scope="col">Voucher</th>
 							<th scope="col">Total</th>
 						</tr>
 					</thead>
-					<tbody>					
+					<tbody>
 					<tr>
-							<td id="fee">{{$fees}}%</td>
-							@foreach($discount as $dis)
-							<td id="sale">{{$dis -> percent}}%</td>
-							@endforeach
-							<td id="voucher"></td>
+							<td id="fee">{{$fee}}%</td>
+							<td id="sale">{{$discount}}%</td>
+							<td id="voucher">{{$voucher}}$</td>
 							<td id="total">{{$total}}$</td>
 						</tr>
 					</tbody>
@@ -68,7 +64,7 @@
 							<i class="fa fa-money cl" aria-hidden="true" style="line-height: 50px;font-size: 130%"></i>
 						</div>
 					</div>
-					
+
 					<div class="float-right bg2" style="width: 47%;height: 50px;display: flex;">
 					    <input type="hidden"name="" value="{{$total}}" id="total_price">
 						<input id="return" class="pl-3" type="" name="" value="{{$total}}$"style="width: 100%;height: 100%;background: none;border: 0;outline: none;color: white" placeholder="Return" disabled>
@@ -76,16 +72,27 @@
 
 						</div>
 					</div>
-					
-					
+
+
 					<div style="clear: both;"></div>
 					<div id="finish-button" style="display:none ;">
-						<div id="FinishCheckout" class="btn bg2 cl mt-4 float-left" style="width: 78%;">Finish</div>
-						<div onclick="print_invoice()" class="js-print-link btn bg2 cl mt-4 float-right" style="width: 20%;"><i class="fa fa-print cl" aria-hidden="true" style="font-size: 130%"></i>						
+
+                       	<form action="{{route('invoices.destroy','test') }}"method="post">
+                         {{ csrf_field() }}
+                         @method('delete')
+                        <input type="hidden" name="tabl_id" value="{{$tabl_id}}">
+                        <input type="hidden" name="total" value="{{$total}}">
+                        <input type="hidden" name="fee" value="{{$fee}}">
+                        <input type="hidden" name="discount" value="{{$discount}}">
+                        <input type="hidden" name="voucher" value="{{$voucher}}">
+                        <button type="submit" class="btn bg2 cl mt-4 float-left" style="width:22%;">Finish</button>
+                      </form>
+
+						<div onclick="print_invoice()" class="js-print-link btn bg2 cl mt-4 float-right" style="width: 20%;"><i class="fa fa-print cl" aria-hidden="true" style="font-size: 130%"></i>
 						</div>
-					</div>	
-					
-					
+					</div>
+
+
 				</div>
 			</div>
 		</div>
@@ -110,29 +117,33 @@
 	<p></p>
 	<div style="clear: both;"></div>
 	<div>
-		<p class="float-left mb-0" style="width: 50%">pro3</p><p class="float-left mb-0" style="width: 25%">1</p><p class="float-left mb-0 bg-danger" style="width: 25%">
-			</p><p class="float-right mb-0">400$</p>
-			<p></p>
-			<div style="clear: both;"></div><p class="float-left mb-0" style="width: 50%">pro5</p><p class="float-left mb-0" style="width: 25%">1</p><p class="float-left mb-0 bg-danger" style="width: 25%">
-			</p><p class="float-right mb-0">15$</p>
-			<p></p>
-			<div style="clear: both;"></div>
+   @foreach($table_products as $table_product)
+		<p class="float-left mb-0" style="width: 50%">{{$table_product ->product->name}}</p>
+        <p class="float-left mb-0" style="width: 25%">{{$table_product ->quanlity}}</p>
+        <p class="float-left mb-0 bg-danger" style="width: 25%">
+		</p>
+        <p class="float-right mb-0">{{$table_product ->product->price}}$</p>
+		<p></p>
+   @endforeach
 	</div>
 	<p class="float-left mb-0 mt-3">Discount</p>
-	<p id="discount-bill" class="float-right mb-0 mt-3">40%</p>
+
+        <p id="discount-bill" class="float-right mb-0 mt-3">{{$discount}}%</p>
+
+
 	<div style="clear: both;"></div>
 	<p class="float-left mb-0">Fee</p>
-	<p id="fee-bill" class="float-right mb-0">30%</p>
+	<p id="fee-bill" class="float-right mb-0">{{$fee}}%</p>
 	<div style="clear: both;"></div>
 	<p class="float-left mb-0">Voucher</p>
-	<p id="voucher-bill" class="float-right mb-0">0</p>
+	<p id="voucher-bill" class="float-right mb-0">{{$voucher}}$</p>
 	<div style="clear: both;"></div>
 	<p class="float-left mb-0 font-weight-bold" style="font-size: 130%">Total</p>
-	<p id="total-bill" class="float-right mb-0 font-weight-bold" style="font-size: 130%">90$</p>
+	<p id="total-bill" class="float-right mb-0 font-weight-bold" style="font-size: 130%">{{$total}}</p>
 	<div style="clear: both;"></div>
 
 	<p class="float-left mb-0 mt-3">Received</p>
-	<p id="received-bill" class="float-right mb-0 mt-3">90$</p>
+	<p id="received-bill" class="float-right mb-0 mt-3">{{$total}}</p>
 	<div style="clear: both;"></div>
 	<p class="float-left mb-0">Return</p>
 	<p id="return-bill" class="float-right mb-0">0$</p>
@@ -159,7 +170,7 @@ function received(){
 }
 
 
-	
+
 
 function print_invoice() {
 	$("#checkout-box").hide();
@@ -169,7 +180,7 @@ function print_invoice() {
     $(".hidePrinf").show();
     $("#print").hide();
 };
-	
+
 </script>
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 
